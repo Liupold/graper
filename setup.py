@@ -14,6 +14,7 @@ setuptools.setup(
     url="https://github.com/Liupold/graper",
     packages=setuptools.find_packages(),
     include_package_data=True,
+    install_requires=['numpy', 'click', 'pyyaml', 'pillow'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
