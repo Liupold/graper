@@ -56,24 +56,14 @@ def get_graph_paper(graph):
     return gp
 
 def get_padding(graph):
-    if 'padding_left' in graph:
-        padding_left = int(graph['padding_left'])
-    else:
-        padding_left = 10
-    if 'padding_right' in graph:
-        padding_right = int(graph['padding_right'])
-    else:
-        padding_right = 0
-    if 'padding_top' in graph:
-        padding_top = int(graph['padding_top'])
-    else:
-        padding_top = 0
-    if 'padding_bottom' in graph:
-        padding_bottom = int(graph['padding_bottom'])
-    else:
-        padding_bottom = 10
 
-    return (padding_left, padding_left, \
+    padding_left = float(graph['padding_left']) if 'padding_left' in graph else 10
+    padding_right = float(graph['padding_right']) if 'padding_right' in graph else 0
+    padding_top = float(graph['padding_top']) if 'padding_top' in graph else 0
+    padding_bottom = float(graph['padding_bottom']) if 'padding_bottom' in graph else 10
+
+    print(padding_bottom)
+    return (padding_left, padding_right, \
             padding_top, padding_bottom)
 
 def padding_limits(limits, left, right, top, bottom):

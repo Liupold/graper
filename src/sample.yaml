@@ -18,8 +18,12 @@ graphs:
                 color: black
                 type: mm
                 save: sample_my_graph.png
+                padding_bottom: 20
+                padding_top: 50
         my_graph2:
                 plots: my_data_lable, my_data_lable2
                 type: mm
                 color: black, purple
                 save: sample_my_graph1.png
+                padding_bottom: 20
+                padding_top: 50
