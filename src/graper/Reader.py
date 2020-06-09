@@ -41,7 +41,7 @@ def verify(yaml_data):
         verify_keys(yaml_data['graphs'][graph], \
                 ['plots', 'type', 'save'], \
                 ['scale', 'color', 'origin', \
-                'padding-left', 'padding-right', 'padding-top', 'padding-bottom'])
+                'padding_left', 'padding_right', 'padding_top', 'padding_bottom'])
 
 def get_yaml(filename):
     with open(filename, 'r') as f:

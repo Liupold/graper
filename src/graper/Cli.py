@@ -20,12 +20,15 @@ def main(draw, simulate, filename):
     for graph_label, graph in graphs.items():
         print("Graphing: {}".format(graph_label))
 
+        padding = Helper.get_padding(graph)
+
         gp = Helper.get_graph_paper(graph)
         get_color = Helper.color_palate(graph)
-        scale, origin = Helper.get_scale_origin(graph, plots, gp)
+        divs = Helper.padding_limits(gp.limits, *padding)
+        scale, origin = Helper.get_scale_origin(graph, plots, divs)
 
         for i, plot in enumerate(graph['plots']):
-            gp_coord = Calc.transform(*plots[plot], scale, origin)
+            gp_coord = Calc.transform(*plots[plot], scale, origin, padding)
             gp.plot(*gp_coord, get_color(i))
 
         if draw:

@@ -22,7 +22,7 @@ def auto_scale(x_range, y_range, divs):
     return (scale_x, scale_y)
 
 
-def transform(data_x, data_y, scale, origin):
+def transform(data_x, data_y, scale, origin, padding):
     """
     This transforms values to graph paper coordinate.
     data_x: values along X axis
@@ -32,6 +32,7 @@ def transform(data_x, data_y, scale, origin):
     for x, y in zip(data_x, data_y):
         x_ = round((x - origin[0]) / scale[0])
         y_ = round((y - origin[1]) / scale[1])
+        x_, y_ = x_ + padding[0], y_ + padding[3]
         x_out.append(x_); y_out.append(y_)
 
     return x_out, y_out

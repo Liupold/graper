@@ -25,7 +25,7 @@ def color_palate(graph):
                 return color.replace(' ', '').split(',')[i]
     return get_color
 
-def get_scale_origin(graph, plots, gp):
+def get_scale_origin(graph, plots, divs):
     points_x = []; points_y = []
     for plot in graph['plots']:
         for x,y in zip(*plots[plot]):
@@ -38,7 +38,7 @@ def get_scale_origin(graph, plots, gp):
     if 'scale' in graph:
         scale = [float(i) for i in graph['scale'].split(',')]
     else:
-        scale = Calc.auto_scale(*range_, gp.limits)
+        scale = Calc.auto_scale(*range_, divs)
 
     if 'origin' in graph:
         origin = [float(i) for i in graph['origin'].split(',')]
@@ -54,3 +54,31 @@ def get_graph_paper(graph):
     gp = GraphPapers.GraphPaper(\
             *GraphPapers.GraphPapersDict[graph['type']])
     return gp
+
+def get_padding(graph):
+    if 'padding_left' in graph:
+        padding_left = int(graph['padding_left'])
+    else:
+        padding_left = 10
+    if 'padding_right' in graph:
+        padding_right = int(graph['padding_right'])
+    else:
+        padding_right = 0
+    if 'padding_top' in graph:
+        padding_top = int(graph['padding_top'])
+    else:
+        padding_top = 0
+    if 'padding_bottom' in graph:
+        padding_bottom = int(graph['padding_bottom'])
+    else:
+        padding_bottom = 10
+
+    return (padding_left, padding_left, \
+            padding_top, padding_bottom)
+
+def padding_limits(limits, left, right, top, bottom):
+    limits = list(limits)
+    limits[0] = limits[0] - left - right
+    limits[1] = limits[1] - top - bottom
+    return tuple(limits)
+
