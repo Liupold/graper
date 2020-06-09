@@ -1,0 +1,35 @@
+info:
+        name: Sample Project
+        about: This is Just an example.
+
+
+plots:
+        x_linear:
+                datafile: data1.csv
+                delimiter: ","
+        x_square:
+                datafile: data2.dat
+                delimiter: "  "
+        x_cube:
+                datafile: data3.dat
+                delimiter: "-"
+
+graphs:
+        graph1:
+                plots: x_linear, x_square
+                color: black
+                type: mm
+                save: graph1.png
+                padding_bottom: 20
+                padding_top: 10
+                padding_left: 20
+        graph2:
+                plots: x_linear, x_cube
+                type: mm
+                save: graph2.png
+                color: red, purple
+                padding_bottom: 20
+        graph3:
+                plots: x_linear, x_square, x_cube
+                type: mm
+                save: graph3.png

@@ -62,7 +62,6 @@ def get_padding(graph):
     padding_top = float(graph['padding_top']) if 'padding_top' in graph else 0
     padding_bottom = float(graph['padding_bottom']) if 'padding_bottom' in graph else 10
 
-    print(padding_bottom)
     return (padding_left, padding_right, \
             padding_top, padding_bottom)
 
