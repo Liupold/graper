@@ -7,7 +7,7 @@ Relax, There is a Better way. 😉
 
 ## How graper works ? (Introduction)
 
-~~Install from pip `pip install graper`~~ (😫 Not there yet).
+Install from pip `pip install graper` (😃).
 * Well before we start we need to make sure these are installed.
   - [numpy](https://pypi.org/project/numpy/)
   - [click](https://pypi.org/project/click/)
