@@ -16,11 +16,12 @@ jobs:
       with:
         python-version: '3.8'
     - name: Build
-      run: ./scripts/build_pip.sh
+      run: scripts/build_pip.sh
 
    deploy:
      needs: build
      runs-on: ubuntu-latest
+
      steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
