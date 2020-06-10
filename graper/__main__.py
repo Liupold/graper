@@ -1,20 +1,33 @@
 #!/usr/bin/python
 import click
-
 from . import Calc
 from . import Helper
 
-@click.command()
-@click.option('--draw/--no-draw', default=True, \
-        help='make graphs [default: True]')
-@click.option('--simulate/--no-simulate', default=False , \
-        help='Dry dun only (Verify yaml) [default: False]')
-@click.argument('filename', required=True, type=click.Path(exists=True))
-def main(draw, simulate, filename):
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+
+@click.command(context_settings=CONTEXT_SETTINGS)
+@click.option('-nd', '--no-draw', is_flag=True, \
+        default=False, help='Do not generate graphs.')
+@click.option('-d', '--dry', is_flag=True,\
+        default=False, help='Dry dun only (Verify yaml)')
+@click.option('-sc', '--show-calculation', is_flag=True, \
+        default=False, help='Show detail calculations.')
+@click.option('-sg', '--show-graphs', is_flag=True, \
+        default=False, help='Show graphs. (Milage may vary)')
+@click.option('-T', '--target', type=click.Path(exists=True), \
+        default='.', help='Path where to save the graphs.')
+@click.argument('filename', required=True, \
+        type=click.Path(exists=True))
+def main(no_draw, dry, show_calculation, \
+        show_graphs, target, filename):
+
+    if dry:
+        print("WARN: Running in dry mode. (No Calculations will be made)")
 
     info, plots, graphs = Helper.get_data(filename)
 
-    if simulate:
+    if dry:
+        print("Dry run complete!.")
         exit()
 
     for graph_label, graph in graphs.items():
@@ -31,7 +44,7 @@ def main(draw, simulate, filename):
             gp_coord = Calc.transform(*plots[plot], scale, origin, padding)
             gp.plot(*gp_coord, get_color(i))
 
-        if draw:
+        if not no_draw:
             gp.save(graph['save'])
 
-main()
+main(prog_name='grapher')
